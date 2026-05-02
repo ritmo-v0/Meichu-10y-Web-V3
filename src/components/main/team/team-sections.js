@@ -1,7 +1,6 @@
 // Components & UI
 import Anchor from "@/components/main/common/anchor";
 import { MarkdownParagraph } from "@/components/main/common/paragraph";
-import { Skeleton } from "@/components/ui/skeleton";
 
 // Icon & Images
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

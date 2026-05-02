@@ -1,13 +1,4 @@
-import colors from "tailwindcss/colors";
 import defaultTheme from "tailwindcss/defaultTheme";
-import plugin from "tailwindcss/plugin";
-
-const gridAreaAuto = {
-	gridArea: "auto",
-};
-const gridAreaStack = {
-	gridArea: "stack",
-};
 
 
 
@@ -39,18 +30,18 @@ module.exports = {
 				"accordion-down": "accordion-down 0.2s ease-out",
 				"accordion-up": "accordion-up 0.2s ease-out",
 			},
-            aspectRatio: {
-                "2/1": "2 / 1",
-                "1/2": "1 / 2",
-                "3/1": "3 / 1",
-                "1/3": "1 / 3",
-                "3/2": "3 / 2",
-                "2/3": "2 / 3",
-                "4/3": "4 / 3",
-                "3/4": "3 / 4",
-                "5/4": "5 / 4",
-                "4/5": "4 / 5",
-            },
+			aspectRatio: {
+				"2/1": "2 / 1",
+				"1/2": "1 / 2",
+				"3/1": "3 / 1",
+				"1/3": "1 / 3",
+				"3/2": "3 / 2",
+				"2/3": "2 / 3",
+				"4/3": "4 / 3",
+				"3/4": "3 / 4",
+				"5/4": "5 / 4",
+				"4/5": "4 / 5",
+			},
 			backgroundImage: {
 				"gradient-60": "linear-gradient(60deg, var(--tw-gradient-stops))",
 				"gradient-135": "linear-gradient(135deg, var(--tw-gradient-stops))",
@@ -72,7 +63,7 @@ module.exports = {
 				input: "hsl(var(--input))",
 				ring: "hsl(var(--ring))",
 				zinc: {
-					50:  "#F5F6F6",
+					50: "#F5F6F6",
 					100: "#EBECF2",  // "#E4E7E9",
 					200: "#CCD0D5",
 					300: "#A8AEB8",
@@ -88,17 +79,17 @@ module.exports = {
 			fontFamily: {
 				sans: ["var(--font-space-grotesk)", "var(--font-noto-sans-tc)", ...defaultTheme.fontFamily.sans],
 			},
-            fontSize: {
+			fontSize: {
 				// https://utopia.fyi/type/calculator?c=576,14,1.25,992,16,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12
-                200: "clamp(  0.56rem, 0.4492rem + 0.3077vi,   0.64rem)",
-                300: "clamp(   0.7rem, 0.5615rem + 0.3846vi,    0.8rem)",
-                400: "clamp( 0.875rem, 0.7019rem + 0.4808vi,      1rem)",
-                500: "clamp(1.0938rem, 0.8774rem +  0.601vi,   1.25rem)",
-                600: "clamp(1.3672rem, 1.0968rem + 0.7512vi, 1.5625rem)",
-                700: "clamp( 1.709rem, 1.3709rem +  0.939vi, 1.9531rem)",
-                800: "clamp(2.1362rem, 1.7137rem + 1.1738vi, 2.4414rem)",
-                900: "clamp(2.6703rem, 2.1421rem + 1.4672vi, 3.0518rem)",
-            },
+				200: "clamp(  0.56rem, 0.4492rem + 0.3077vi,   0.64rem)",
+				300: "clamp(   0.7rem, 0.5615rem + 0.3846vi,    0.8rem)",
+				400: "clamp( 0.875rem, 0.7019rem + 0.4808vi,      1rem)",
+				500: "clamp(1.0938rem, 0.8774rem +  0.601vi,   1.25rem)",
+				600: "clamp(1.3672rem, 1.0968rem + 0.7512vi, 1.5625rem)",
+				700: "clamp( 1.709rem, 1.3709rem +  0.939vi, 1.9531rem)",
+				800: "clamp(2.1362rem, 1.7137rem + 1.1738vi, 2.4414rem)",
+				900: "clamp(2.6703rem, 2.1421rem + 1.4672vi, 3.0518rem)",
+			},
 			keyframes: {
 				"accordion-down": {
 					from: { height: "0" },
@@ -116,8 +107,8 @@ module.exports = {
 				300: "3",
 			},
 			screens: {
-                // Logic opposite to widths
-                petite: { raw: "(max-height: 576px)" },
+				// Logic opposite to widths
+				petite: { raw: "(max-height: 576px)" },
 				compact: { raw: "(max-height: 768px)" },
 			},
 			skew: {
@@ -154,20 +145,5 @@ module.exports = {
 	},
 	plugins: [
 		require("tailwindcss-animate"),
-		plugin(function({ addComponents }) {
-			const components = {
-				".grid-stack-none": {
-					gridTemplateAreas: "none",
-					"& > *": { ...gridAreaAuto },
-				},
-				".grid-stack": {
-					gridTemplateAreas: '"stack"',
-					"& > *": { ...gridAreaStack },
-				},
-				".grid-area-auto": { ...gridAreaAuto },
-				".grid-area-stack": { ...gridAreaStack },
-			}
-			addComponents(components);
-		}),
 	],
 };

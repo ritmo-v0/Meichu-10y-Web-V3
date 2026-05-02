@@ -40,7 +40,7 @@ const links = [
 export default function Navbar() {
 	const ref = useRef(null);
 	const [isPinned, setIsPinned] = useState(false);
-	
+
 	const handleScroll = throttle(() => {
 		if (ref.current) {
 			const rect = ref.current.getBoundingClientRect();
@@ -52,9 +52,9 @@ export default function Navbar() {
 		window.addEventListener("scroll", handleScroll);
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, [handleScroll]);
-	
+
 	return (
-        <NavigationMenu ref={ref} className={`${isPinned ? "neu-concave-sm" : ""} sticky -top-px justify-between gap-4 md:mt-[clamp(0px,_16vh_-_6rem,_3rem)] px-6 py-4 transition-box-shadow`}>
+		<NavigationMenu ref={ref} className={`${isPinned ? "neu-concave-sm" : ""} sticky -top-px justify-between gap-4 md:mt-[clamp(0px,_16vh_-_6rem,_3rem)] px-6 py-4 transition-box-shadow`}>
 			<NavigationMenuList className="p-2 md:ml-20 lg:ml-32 xl:ml-40">
 				<TooltipProvider delayDuration={500}>
 					<NavigationLinks links={links} />
@@ -64,7 +64,7 @@ export default function Navbar() {
 				<ThemeToggle />
 			</NavigationMenuList>
 		</NavigationMenu>
-    );
+	);
 }
 
 function NavigationLinks({ links }) {
@@ -72,8 +72,8 @@ function NavigationLinks({ links }) {
 		<>
 			{links.map((link, index) => (
 				<NavigationMenuItem key={index}>
-					<Link href={link.href} legacyBehavior passHref>
-						<NavigationMenuLink className={navigationMenuTriggerStyle()}>
+					<NavigationMenuLink className={navigationMenuTriggerStyle()} asChild>
+						<Link href={link.href}>
 							<div className="md:hidden">
 								<Tooltip>
 									<TooltipTrigger asChild>{link.icon}</TooltipTrigger>
@@ -81,8 +81,8 @@ function NavigationLinks({ links }) {
 								</Tooltip>
 							</div>
 							<span className="hidden md:inline">{link.name}</span>
-						</NavigationMenuLink>
-					</Link>
+						</Link>
+					</NavigationMenuLink>
 				</NavigationMenuItem>
 			))}
 		</>

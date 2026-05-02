@@ -1,8 +1,9 @@
 "use client";
+import { use } from "react";
 
 // SWR
 import useSWR from "swr";
-import fetcher from "@/lib/fetcher";
+import { fetcher } from "@/lib/fetch";
 
 // Components & UI
 import TeamHeader from "@/components/main/team/team-header";
@@ -11,9 +12,11 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 
 
-export default function TeamPage({ params }) {
-	const { data, error, isLoading } = useSWR(params.teamId ? `/api/teams/${params.teamId}` : null, fetcher);
-	const teamData = data?.data || {};
+export default function TeamPage(props) {
+	const teamId = use(props.params).teamId;
+
+	const { data, error, isLoading } = useSWR(teamId ? `teams/${teamId}` : null, fetcher);
+	const teamData = data || {};
 
 	// TODO: Error layout
 	if (error) return (
@@ -23,19 +26,19 @@ export default function TeamPage({ params }) {
 	);
 
 	return (
-        <div>
+		<div>
 			<header className="w-screen">
 				{isLoading ? (
 					<Skeleton className="w-screen h-72" />
 				) : (
 					<TeamHeader
-						coverImgUrl={teamData.cover_img_url}
+						coverImgUrl={teamData.coverImgUrl}
 						title={teamData.title}
 						year={teamData.year}
 						group={teamData.group}
-						teamName={teamData.team_name}
+						teamName={teamData.teamName}
 						email={teamData.email}
-						related_urls={teamData.related_urls}
+						related_urls={teamData.relatedUrls}
 						tags={teamData.tags}
 					/>
 				)}
@@ -45,11 +48,14 @@ export default function TeamPage({ params }) {
 					<div className="wrapper-md">
 						<article className="grid gap-y-18 py-12">
 							<IntroSection introduction={teamData.introduction} />
-							<DescSection teamDesc={teamData.team_desc} members={teamData.members} />
+							<DescSection
+								teamDesc={teamData.teamDescription}
+								members={teamData.members}
+							/>
 						</article>
 					</div>
 				)}
-            </main>
-        </div>
+			</main>
+		</div>
 	);
 }

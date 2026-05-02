@@ -64,17 +64,17 @@
 /* ----------------------------- HTML ----------------------------- */
 @layer base {
 	* {
-		@apply border-border;
+		@apply border-border outline-ring/50;
 	}
 
 	html {
-		@apply scroll-smooth scroll-pt-24;
+		@apply motion-safe:scroll-smooth scroll-pt-24 overscroll-y-none;
 	}
 
 	body {
 		@apply grid grid-rows-[auto_1fr_auto] min-h-svh overflow-x-hidden;
 		scrollbar-gutter: stable both-edges;
-		
+
 		@apply bg-primary text-primary-foreground;
 		@apply font-sans text-400 tracking-wide leading-[1.6];
 	}
@@ -112,7 +112,7 @@
     h1, h2, h3, h4, h5, h6 {
         @apply leading-[1.5] text-balance;
     }
-    
+
     h1 {
         @apply text-900 font-bold;
 		@apply max-w-fit;
@@ -130,7 +130,7 @@
 			@apply mt-1;
 		}
     }
-    
+
     p {
         @apply text-justify leading-[2];
 
@@ -224,11 +224,11 @@
 	// Navbar
 	.nav-link {
 		--spacing: 0.2em;
-	
+
 		@apply relative max-w-fit;
 		@apply text-sm font-light tracking-[var(--spacing)] uppercase;
 		@apply hover:after:opacity-100;
-	
+
 		&::after {
 			@apply content-[""] absolute left-0 bottom-[-0.15em] w-[calc(100%_-_var(--spacing))] h-[0.1rem];
 			@apply bg-primary-foreground rounded-full opacity-0 transition-opacity;
@@ -239,7 +239,7 @@
 	.footer-link {
 		@apply aspect-square;
 		@apply hover:text-[var(--color)] focus-visible:text-[var(--color)];
-	
+
 		&[data-name="Facebook"] {
 			--color: #1877F2;
 		}

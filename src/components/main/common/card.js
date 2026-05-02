@@ -61,7 +61,6 @@ export function NeuCard({
 					alt={imgAlt}
 					className={`h-full aspect-3/2 ${contain ? "object-contain" : "object-cover"} ${axis === "x" ? "md:max-w-sm md:aspect-square" : ""}`}
 					width={600} height={400}
-                    quality={80}
 					priority={priority}
 				/>
 				{showBadge && badge && <Badge className="absolute bottom-0 left-0 flex items-center m-4" variant="secondary">{badge}</Badge>}

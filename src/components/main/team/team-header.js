@@ -6,7 +6,7 @@ import Anchor from "@/components/main/common/anchor";
 // Icon & Images
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFigma, faGithub, faGitlab } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope, faEye, faMessage } from "@fortawesome/free-regular-svg-icons";
+import { faEnvelope, faEye } from "@fortawesome/free-regular-svg-icons";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 
 
@@ -51,7 +51,7 @@ export default function TeamHeader({
 			<div className="relative py-6 isolate">
 				{/* Information */}
 				<TeamInformation title={title} teamName={teamName} year={year} group={group} email={email} related_urls={related_urls} />
-				
+
 				{/* Gradient Overlay */}
 				<GradientOverlay className="absolute top-0 left-0 w-full h-full -z-1" />
 
@@ -61,8 +61,7 @@ export default function TeamHeader({
 						src={coverImgUrl}
 						alt={`Cover image of ${title}`}
 						className={`absolute top-0 right-0 h-full object-cover opacity-40 -z-2`}
-						width={1920} height={640} 
-						quality={100}
+						width={1920} height={640}
 						priority
 					/>
 				)}
@@ -74,9 +73,9 @@ export default function TeamHeader({
 
 function TeamInformation({ title, teamName, year, group, email, related_urls }) {
 	return (
-		<div className="wrapper-md gap-4"> 
+		<div className="wrapper-md gap-4">
 			{/* Titles */}
-			<div>	
+			<div>
 				<h1 className="text-800">{title}</h1>
 				<span className="font-medium text-600">{teamName} ｜ {year} {group}</span>
 			</div>
@@ -89,7 +88,7 @@ function TeamInformation({ title, teamName, year, group, email, related_urls }) 
 				</Anchor>
 				{related_urls.map((url, index) => {
 					const resolvedUrl = resolveUrl(url);
-					return (		
+					return (
 						<Anchor key={index} href={url}>
 							<FontAwesomeIcon icon={resolvedUrl.icon} />
 							<span className="ml-2">{resolvedUrl.urlText}</span>

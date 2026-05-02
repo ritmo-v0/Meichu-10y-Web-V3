@@ -1,24 +1,24 @@
-import fetcher from "@/lib/fetcher";
 import { getBaseUrl } from "@/lib/utils";
 
 // Metadata
 export async function generateMetadata({ params }) {
-	const baseUrl = getBaseUrl();
-	const data = await fetcher(`${baseUrl}/api/about/${params.year}?summary_only=true`);
-	const yearData = data?.data || {};
+	const year = (await params).year;
+	const baseUrl = getBaseUrl().origin;
 
-	const title = `${params.year}`;
-	const description = yearData?.summary ?? "";
-	const url = `${baseUrl}/about/${params.year}`;
+	const res = await fetch(`${baseUrl}/api/about/${year}?summary_only=true`);
+	const aboutData = await res.json();
+
+	const title = `${year}`;
+	const description = aboutData?.summary ?? "";
+	const url = `${baseUrl}/about/${year}`;
 
 	return {
-        title,
-        description,
+		title,
+		description,
 		openGraph: {
 			title: `關於 ${title} 梅竹黑客松`,
 			description,
 			url,
-			// images: [], // TODO: Get image from Firebase Storage
 		},
 		twitter: {
 			card: "summary_large_image",
@@ -31,5 +31,5 @@ export async function generateMetadata({ params }) {
 
 
 export default function YearLayout({ children }) {
-    return children;
+	return children;
 }
